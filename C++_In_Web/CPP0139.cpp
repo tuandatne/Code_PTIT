@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define Nmax 1000
+#define Nmax 1000000
 bool snt(long long  n)
 {
 	if( n < 2)

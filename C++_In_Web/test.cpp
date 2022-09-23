@@ -1,36 +1,59 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-long long tinhtong(long long n)
+void qs(long long  a[], long long  b[], long long l, long long  r)
 {
-	long long k,i,tong=1;
-	for(i=2; i<=sqrt(n); i++)
-	{
-		if( n % i == 0)
+		long i=l, j=r, x=a[(l+r)/2], y=b[(l+r)/2];
+		while (i<=j)
 		{
-			k = n / i;
-			if( k != i)
-			{
-				tong=tong+k+i;
-			}
-			else
-			  if( k == i)
-			  {
-			  
-			   tong=tong+k;
-	          }
+				while ((a[i] < x) || (a[i]==x && b[i]<y)) i++;
+				while ((a[j] > x) || (a[j]==x && b[j]>y)) j--;
+				if (i<=j)
+				{
+					long temp=a[i];      a[i]=a[j];      a[j]=temp;
+					     temp=b[i];      b[i]=b[j];      b[j]=temp;
+					i++;
+					j--;
+				}
 		}
-	}
-	return tong;
+		if (i<r) qs(a,b,i,r);
+		if (j>l) qs(a,b,l,j);
 }
-int main ()
+int main()
 {
-	long long n;
-	cin>>n;
-	for(long long i=2; i<=n; i++)
+	int t,n,i,j;
+	cin>>t;
+	long long  a[100000],b[100000];
+	while(t--)
 	{
-		if(tinhtong(i) == i)
-		{
-			cout<<i<<endl;
-		}
-	}
+		cin>>n;
+		long long dem=0;
+		for( i=1; i<=n; i++)
+		 for( j=1; j<=n; j++)
+		  {
+				dem++;
+				cin>>a[dem];
+				b[dem]=i;
+		 }
+		qs(a,b,1,dem);
+		dem++;
+		a[dem]=INT_MIN;
+		int dem1=1,dem2=0;
+	    for( i=1; i<dem; i++)
+	    {
+		   if(a[i] == a[i+1])
+		   {
+		   	if( b[i] != b[i+1])
+		   		dem1++;
+		   }
+		   else
+		   {
+		   	 if(dem1 == n)
+		   	   dem2++;
+		   	 dem1=1;
+		   }
+     	}
+     	cout<<dem2<<endl;
+//for(i=1; i<=dem; i++)
+//  cout<<a[i] <<" "<<b[i]	<<endl;
+    }
 }
