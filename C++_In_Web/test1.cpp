@@ -1,45 +1,27 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-
-int main()
+int  C[1009][1009];
+const int  mod = (int  ) 1e9 + 7;
+void init()
 {
-	int n, x;
-	cin >> n >> x;
-	int a[n];
-	int b[n];
-	for(int i = 0; i< n; i++)
+	for(int  i=0; i<=1009; i++)
 	{
-		cin >> a[i];
-	}
-	
-	int res = 1;
-	int test = 0;
-	
-	for(int i = n-1; i >= 0; i--)
-	{
-		
-		if(a[i] == 0)
+		for(int  j=0; j<=i; j++)
 		{
-			b[i] = 0;
-		}
-		else 
-		{
-			test = 1;
-			b[i] = res;
-			if(a[i] < a[i-1] && i > 0)
+			if( j == 0 || i == j)
+			  C[i][j]=1;
+			else
 			{
-				res++;
+				C[i][j]= C[i-1] [j] + C[i-1] [j-1];
+				C[i][j] %= mod;
 			}
 		}
 	}
-	if(res != x && test == 1)
-		cout << "ambiguous";
-	else
-	{
-		for(int i = 0; i < n; i++)
-		{
-			cout << b[i] << endl;
-		}
-	}
+}
+int main ()
+{
+	init();
+	int  m,n;
+	cin>>n>>m;
+	cout<<C[m+n-1][n] % mod <<endl;
 }

@@ -2,15 +2,16 @@
 using namespace std;
 int main ()
 {
-   int t,a[100009],n,i;
+   int t,n,i;
    cin >>t;
    while( t--)
    {
      cin >>n;
+     vector <int> a(n);
      int min=INT_MAX;
      for(i=0; i<n; i++)
         cin >>a[i];
-    sort(a,a+n);
+    sort(a.begin(),a.end());
     for(i=0; i<n-1; i++)
     {
         if( abs(a[i] - a[i+1]) < min)

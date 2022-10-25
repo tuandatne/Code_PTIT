@@ -8,8 +8,12 @@ class SinhVien
     public:
         SinhVien();
         ~SinhVien();
-        void nhap(string );
+        void nhap();
         void inmh();
+        string getclasses()
+        {
+            return classes;
+        }
         string getmsv()
         {
             return masv;
@@ -24,9 +28,9 @@ SinhVien::~SinhVien()
 {
 
 }
-void SinhVien::nhap(string masv)
+void SinhVien::nhap()
 {
-    this->masv=masv;
+    cin>>masv;
     cin.ignore();
     getline(cin,name);
     cin>>classes;
@@ -38,20 +42,26 @@ void SinhVien::inmh()
 }
 bool cmp(SinhVien a, SinhVien b)
 {
-    return a.getmsv() <b.getmsv();
+    if(a.getclasses() < b.getclasses())
+       return 1;
+    if(a.getclasses() == b.getclasses() )
+    {
+        if(a.getmsv() < b.getmsv())
+            return 1;
+    }
+    return 0;
 }
 int main ()
 {
-    int i,dem=0;
+    int n,i;
+    cin>>n;
     SinhVien ds[10000];
-    string a="";
-    while(a !="\n")
+    for(i=0; i<n; i++)
     {
-        dem++;
-        ds[dem].nhap(a);
+        ds[i].nhap();
     }
-    sort(ds,ds+dem, cmp);
-    for(i=0; i<dem; i++)
+    sort(ds,ds+n, cmp);
+    for(i=0; i<n; i++)
     {
         ds[i].inmh();
     }
