@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-    int tc, n, i, sum;
+    long long tc, n, i, sum;
     cin>>tc;
     for (i=1; i<=tc; i++)
     {
