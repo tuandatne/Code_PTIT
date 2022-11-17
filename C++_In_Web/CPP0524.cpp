@@ -1,42 +1,50 @@
-#include <bits/stdc++.h>
+//https://code.ptit.edu.vn/student/question/CPP0524
+//BẢNG ĐIỂM THÀNH PHẦN - 1
+
+#include<bits/stdc++.h>
 using namespace std;
-
-struct Student
+struct SinhVien
 {
-    string msv, name, lop;
-    double d1, d2, d3;
-
-    void input() {
-        cin.ignore();
-        getline(cin, msv);
-        getline(cin, name);
-        getline(cin, lop);
-        cin >> d1 >> d2 >> d3;
-    }
-
-    void output() {
-        cout << msv << " " << name << " " << lop << " ";
-        cout << fixed << setprecision(1) << d1 << " " << d2 << " " << d3 << endl;
-    }
+    string  masv,name,classes;
+    string diem1,diem2,diem3;
 };
-
-bool cmp(Student a, Student b)
+void nhap(SinhVien &a)
 {
-    return a.msv < b.msv;
+    cin>>a.masv;
+    cin.ignore();
+    getline(cin,a.name);
+    cin>>a.classes;
+    cin>>a.diem1;
+    cin>>a.diem2;
+    cin>>a.diem3;
 }
-
-int main()
+bool cmp(SinhVien a, SinhVien b)
 {
+    return a.masv < b.masv;
+}
+void sap_xep(SinhVien ds[], int n)
+{
+    sort(ds,ds+n,cmp);
+}
+void in_ds(SinhVien ds[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cout<<i+1<<" "<<ds[i].masv<<" "<<ds[i].name<<" "<<ds[i].classes<<" ";
+        // cout<<fixed<<setprecision(1)<<ds[i].diem1<<" ";
+        // cout<<fixed<<setprecision(1)<<ds[i].diem2<<" ";
+        // cout<<fixed<<setprecision(1)<<ds[i].diem3<<endl;
+        cout<<ds[i].diem1<<" "<<ds[i].diem2<<" "<<ds[i].diem3<<endl;
+    }
+}
+int main(){
     int n;
     cin >> n;
-    Student a[n];
-    for (int i = 0; i < n; ++i) {
-        a[i].input();
-    }
-    sort(a, a + n, cmp);
-    for (int i = 0; i < n; ++i) {
-        cout << i + 1 << " ";
-        a[i].output();
-    }
+    struct SinhVien *ds = new SinhVien[n];
+    for(int i = 0; i < n; i++) {
+    	nhap(ds[i]);
+	}
+	sap_xep(ds, n);
+    in_ds(ds,n);
     return 0;
 }

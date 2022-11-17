@@ -1,5 +1,5 @@
-//https://code.ptit.edu.vn/student/question/CPP0529
-//DANH SÁCH THỰC TẬP - 2
+//https://code.ptit.edu.vn/student/question/CPP0528
+//DANH SÁCH THỰC TẬP - 1
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -21,7 +21,7 @@ void nhap(SinhVien &a)
 }
 bool cmp(SinhVien a, SinhVien b)
 {
-    return a.msv < b.msv;
+    return a.name < b.name;
 }
 void ct()
 {

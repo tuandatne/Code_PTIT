@@ -1,42 +1,51 @@
-#include <bits/stdc++.h>
-using namespace std;
+//https://code.ptit.edu.vn/student/question/CPP0527
+//SẮP XẾP THỜI GIAN
 
+#include<bits/stdc++.h>
+using namespace std;
 struct Time
 {
-    int h, m, s;
-
-    void input() {
-        cin >> h >> m >> s;
-    } 
-    
-    void output() {
-        cout << h << " " << m << " " << s << endl;
-    }
+    int hour, minute, second;
 };
-
-bool cmp(Time a, Time b) 
+void nhap(Time &a)
 {
-    if (a.h < b.h) return 1;
-    if (a.h == b.h) {
-        if (a.m < b.m) return 1;
-        if (a.m == b.m) {
-            if (a.s < b.s) return 1;
+    cin>>a.hour>>a.minute>>a.second;
+}
+bool cmp(Time a, Time b)
+{
+    if(a.hour < b.hour)
+      return true;
+    if(a.hour == b.hour)
+    {
+        if(a.minute < b.minute)
+          return true;
+        if(a.minute > b.minute)
+          return false;
+        if(a.minute == b.minute)
+        {
+            if(a.second < b.second)
+               return true;
+            else
+               return false;
         }
     }
-    return 0;
+    return false;
 }
-
-int main()
+void in(Time a)
 {
-    int n;
-    cin >> n;
-    Time a[n];
-    for (int i = 0; i < n; ++i) {
-        a[i].input();
-    }
-    sort(a, a + n, cmp);
-    for (int i = 0; i < n; ++i) {
-        a[i].output();
-    }
-    return 0;
+        cout<<a.hour<<" "<<a.minute<<" "<<a.second<<endl;
+}
+void ct()
+{
+    int n,i;  cin>>n;
+    Time ds[n+1];
+    for(i=0; i<n; i++)
+        nhap(ds[i]);
+    sort(ds,ds+n, cmp);
+    for(i=0; i<n; i++)
+        in(ds[i]);
+}
+int main ()
+{
+    ct();
 }
